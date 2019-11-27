@@ -6,9 +6,6 @@ import sqlite3
 
 
 app = Flask('app')
-con = sqlite3.connect('agenda.db')
-cursor = con.cursor()
-
 
 
 @app.route('/gravar', methods=['POST'])
@@ -24,13 +21,10 @@ def gravar():
 	dataLog = datahora.strftime('%d/%m/%Y %H:%M')
 
 	tupla = (nome, horaAgenda, dataAgenda, local, telefone, tags, dataLog)
-	
-	cursor.execute("INSER INTO agenda(nome, hora,data, local, telefone, tags, logData) values ?;")
-
+	dados = [tupla]
 	print(tupla)
+	print(dados)
 	return redirect('/agendar')
-
-
 
 
 
